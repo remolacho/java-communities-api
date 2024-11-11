@@ -12,6 +12,7 @@ public class TenantContext {
     }
 
     public static void clear() {
+        System.out.println("Se limpia el contexto ########### " + getCurrentTenant());
         currentTenant.remove();
     }
 }
