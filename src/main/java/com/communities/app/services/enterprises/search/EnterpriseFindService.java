@@ -18,7 +18,7 @@ public class EnterpriseFindService implements IEnterpriseFindService {
     }
 
     @Override
-    public Optional<Enterprise> findBySubdomain(String subdomain) {
+    public Optional<Enterprise> findBySubdomain(String subdomain) throws TenantElementException {
         try {
             return enterprise.findBySubdomain(subdomain);
         }catch (InvalidDataAccessResourceUsageException e) {
@@ -27,7 +27,7 @@ public class EnterpriseFindService implements IEnterpriseFindService {
     }
 
     @Override
-    public Enterprise findById(Long id) {
+    public Enterprise findById(Long id) throws TenantElementException {
         try {
             return enterprise.findById(id).orElseThrow(() ->new RecordNotFoundException("The enterprise not found"));
         }catch (InvalidDataAccessResourceUsageException e) {
