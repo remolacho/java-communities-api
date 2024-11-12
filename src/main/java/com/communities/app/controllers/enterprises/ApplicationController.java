@@ -17,29 +17,39 @@ import java.util.Map;
 public class ApplicationController {
     protected final Log logger = LogFactory.getLog(getClass());
 
-    public static final String PREFIX_ERROR = "error";
-
     @ExceptionHandler(RecordNotFoundException.class)
     public ResponseEntity<?> handleRecordNotFoundException(RecordNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Map.of(PREFIX_ERROR, ex.getMessage()));
+                .body(Map.of(
+                        "success", false,
+                        "message", ex.getMessage()
+                ));
     }
 
     @ExceptionHandler(ArgumentErrorException.class)
     public ResponseEntity<?> handlerArgumentErrorException(ArgumentErrorException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(Map.of(PREFIX_ERROR, ex.getMessage()));
+                .body(Map.of(
+                        "success", false,
+                        "message", ex.getMessage()
+                ));
     }
 
     @ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<?> handlerForbiddenException(ForbiddenException ex){
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(Map.of(PREFIX_ERROR, ex.getMessage()));
+                .body(Map.of(
+                        "success", false,
+                        "message", ex.getMessage()
+                ));
     }
 
     @ExceptionHandler(TenantElementException.class)
     public ResponseEntity<?> handlerTenantElementException(TenantElementException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(Map.of(PREFIX_ERROR, ex.getMessage()));
+                .body(Map.of(
+                        "success", false,
+                        "message", ex.getMessage()
+                ));
     }
 }
