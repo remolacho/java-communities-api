@@ -1,5 +1,6 @@
 package com.communities.app.controllers.enterprises;
 
+import com.communities.app.services.enterprises.search.IEnterpriseFindService;
 import com.communities.domain.dao.IEnterprise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class SubdomainController extends ApplicationController{
 
     @Autowired
-    public IEnterprise enterprise;
+    public IEnterpriseFindService enterpriseFindService;
 
     @GetMapping("/enterprise/subdomain")
     public String index(@PathVariable String subdomain){
         logger.info("Se ejecuta el evento nombre de la empresa ########### " +
-                enterprise.findBySubdomain(subdomain).orElse(null).getName());
+                enterpriseFindService.findBySubdomain(subdomain).orElse(null).getName());
 
         return "Hola estamos Arriba!!!! " + subdomain;
     }
