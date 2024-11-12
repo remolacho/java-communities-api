@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface IEnterpriseFindService {
     public Optional<Enterprise> findBySubdomain(String subdomain);
+    public Enterprise findById(Long id);
 }

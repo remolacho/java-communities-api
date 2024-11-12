@@ -17,6 +17,8 @@ public class SubdomainController extends ApplicationController{
         logger.info("Se ejecuta el evento nombre de la empresa ########### " +
                 enterpriseFindService.findBySubdomain(subdomain).orElse(null).getName());
 
+        logger.info("Se ejecuta el evento nombre de la empresa ########### " +
+                enterpriseFindService.findById(1L));
         return "Hola estamos Arriba!!!! " + subdomain;
     }
 }

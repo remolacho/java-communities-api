@@ -39,7 +39,7 @@ public class ApplicationController {
 
     @ExceptionHandler(TenantElementException.class)
     public ResponseEntity<?> handlerTenantElementException(TenantElementException ex){
-        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of(PREFIX_ERROR, ex.getMessage()));
     }
 }
