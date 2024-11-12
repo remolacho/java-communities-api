@@ -11,7 +11,6 @@ import java.util.Objects;
 public class TenantSchemaResolver implements CurrentTenantIdentifierResolver {
     protected final Log logger = LogFactory.getLog(getClass());
 
-
     @Override
     public String resolveCurrentTenantIdentifier() {
         String currentTenant = TenantContext.getCurrentTenant();
