@@ -1,7 +1,6 @@
 package com.communities.app.controllers.enterprises;
 
 import com.communities.app.services.enterprises.search.IEnterpriseFindService;
-import com.communities.domain.dao.IEnterprise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
