@@ -5,8 +5,6 @@ import com.communities.domain.dao.IEnterprise;
 import com.communities.domain.entities.Enterprise;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class EnterpriseFindService implements IEnterpriseFindService {
     public final IEnterprise enterprise;
@@ -16,7 +14,7 @@ public class EnterpriseFindService implements IEnterpriseFindService {
     }
 
     @Override
-    public Optional<Enterprise> findBySubdomain(String subdomain){
+    public Enterprise findBySubdomain(String subdomain){
         return enterprise.findBySubdomain(subdomain)
                 .orElseThrow(() ->new RecordNotFoundException("The enterprise not found"));
     }
