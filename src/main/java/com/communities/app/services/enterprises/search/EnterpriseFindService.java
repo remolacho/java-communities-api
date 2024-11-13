@@ -1,10 +1,8 @@
 package com.communities.app.services.enterprises.search;
 
 import com.communities.app.exceptions.RecordNotFoundException;
-import com.communities.app.exceptions.TenantElementException;
 import com.communities.domain.dao.IEnterprise;
 import com.communities.domain.entities.Enterprise;
-import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,20 +16,13 @@ public class EnterpriseFindService implements IEnterpriseFindService {
     }
 
     @Override
-    public Optional<Enterprise> findBySubdomain(String subdomain) throws TenantElementException {
-        try {
-            return enterprise.findBySubdomain(subdomain);
-        }catch (InvalidDataAccessResourceUsageException e) {
-            throw new TenantElementException("The subdomain is not valid: " + subdomain);
-        }
+    public Optional<Enterprise> findBySubdomain(String subdomain){
+        return enterprise.findBySubdomain(subdomain)
+                .orElseThrow(() ->new RecordNotFoundException("The enterprise not found"));
     }
 
     @Override
-    public Enterprise findById(Long id) throws TenantElementException {
-        try {
-            return enterprise.findById(id).orElseThrow(() ->new RecordNotFoundException("The enterprise not found"));
-        }catch (InvalidDataAccessResourceUsageException e) {
-            throw new TenantElementException("The subdomain is not valid");
-        }
+    public Enterprise findById(Long id) {
+        return enterprise.findById(id).orElseThrow(() ->new RecordNotFoundException("The enterprise not found"));
     }
 }
