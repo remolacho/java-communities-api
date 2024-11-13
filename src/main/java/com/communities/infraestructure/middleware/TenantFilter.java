@@ -1,4 +1,4 @@
-package com.communities.app.middleware;
+package com.communities.infraestructure.middleware;
 
 import com.communities.infraestructure.tenant.TenantContext;
 import jakarta.servlet.Filter;
@@ -30,8 +30,11 @@ public class TenantFilter implements Filter {
         tenantSwitch(subdomain);
         logger.info("Se ejecuta el filter ############ " + TenantContext.getCurrentTenant());
 
-        filterChain.doFilter(servletRequest, servletResponse);
-        TenantContext.clear();
+        try{
+            filterChain.doFilter(servletRequest, servletResponse);
+        }finally{
+            TenantContext.clear();
+        }
     }
 
     private void tenantSwitch(String subdomain){

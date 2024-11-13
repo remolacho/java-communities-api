@@ -1,6 +1,6 @@
 package com.communities.infraestructure.config;
 
-import com.communities.app.middleware.TenantFilter;
+import com.communities.infraestructure.middleware.TenantFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
