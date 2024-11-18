@@ -1,7 +1,6 @@
 package com.communities.app.controllers.enterprises;
 
-import com.communities.app.exceptions.RecordNotFoundException;
-import com.communities.app.services.enterprises.search.IEnterpriseFindService;
+import com.communities.app.services.enterprises.implement.EnterpriseImp;
 import com.communities.domain.entities.Enterprise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,17 +15,17 @@ import java.util.Map;
 public class SubdomainController extends ApplicationController{
 
     @Autowired
-    public IEnterpriseFindService enterpriseFindService;
+    public EnterpriseImp enterpriseImp;
 
     @GetMapping("/enterprise/subdomain")
     public  ResponseEntity<?> index(@PathVariable String subdomain){
-        Enterprise enterprise = enterpriseFindService.findBySubdomain(subdomain);
+        Enterprise enterprise = enterpriseImp.getEnterprise(subdomain);
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of(
                         "success", true,
                         "message", "El subdomain es valido",
-                        "data", Map.of("logo_url", enterprise.getName())
+                        "data", Map.of("logo_url", enterprise.getLogoUrl())
                 ));
     }
 }
