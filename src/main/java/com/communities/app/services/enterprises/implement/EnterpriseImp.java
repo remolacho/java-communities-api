@@ -21,10 +21,6 @@ public class EnterpriseImp {
         return assignEnterpriseUrls(enterpriseFindService.findBySubdomain(subdomain));
     }
 
-    public Enterprise getEnterprise(Long id){
-        return assignEnterpriseUrls(enterpriseFindService.findById(id));
-    }
-
     private Enterprise assignEnterpriseUrls(Enterprise enterprise){
         enterprise.setLogoUrl(resourceUrl(enterprise.getId(), "logo"));
         enterprise.setBannerUrl(resourceUrl(enterprise.getId(), "banner"));
@@ -32,6 +28,9 @@ public class EnterpriseImp {
     }
 
     private String resourceUrl(long id, String resource) {
-        return activeStorage.getUrlResource(id, "Enterprise", resource);
+        return activeStorage.getUrlResource(activeStorage.getAttachment(id,
+                "Enterprise",
+                resource)
+        );
     }
 }
